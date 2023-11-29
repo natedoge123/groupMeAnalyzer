@@ -11,7 +11,6 @@ import functions as fnc
 ########################
 
 fileReadLocation = input("What is the path to the directory? \n")
-fileReadLocation = "/home/nate/Documents/dataFiles/gmArchive/20231104/"
 fileWriteLocation = fileReadLocation
 
 readNames = fileReadLocation + "conversation.json"
@@ -24,8 +23,6 @@ messages = fnc.jsonCleaner(fnc.jsonLoader(readMessages))
 
 messsages = fnc.nameUpdate(messages, names)
 fnc.jsonWriter(messages, fileWriteLocation, 'newMessage')
-print(messages[2])
-print(names)
 
 ########################
 #   Analysis Section
@@ -35,6 +32,8 @@ messageCount = fnc.messageCountPerPerson(messages, names)
 
 likedMessage = fnc.likedMessages(messages, names)
 
+likedMessagePercent = fnc.likedMessagesPercentage(likedMessage, messageCount)
+print(likedMessagePercent)
 
 ########################
 #   Graph Section
@@ -44,9 +43,10 @@ likedMessage = fnc.likedMessages(messages, names)
 fnc.drawMessageCount(names, messageCount, (fileWriteLocation + 'messageCount.png'))
 
 #   Plot Like Numbers
+fnc.drawLikedMessages(names, likedMessage, (fileWriteLocation + 'likeCount.png'))
 
 #   Plot Like Percentages
-
+fnc.drawLikedMessages(names, likedMessagePercent, (fileWriteLocation + 'likeCountPercentage.png'))
 
 print("Complete")
 print("Run Time %s seconds" % (time.time() - startTime))
