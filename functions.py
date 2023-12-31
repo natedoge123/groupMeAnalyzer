@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 #   Need to get the real names and the nick names and account numbers    
 ##########################################################################
 def jsonLoader(fileName):
-    with open(fileName, encoding = "utf-8") as f:
+   with open(fileName, encoding = "utf-8") as f:
         data = json.load(f)
     return data
 
